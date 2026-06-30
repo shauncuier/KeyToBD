@@ -1,0 +1,68 @@
+# =========================
+# WordPress wp-content .gitignore
+# =========================
+
+# ----- Uploads (user media) -----
+# These are large binary files managed outside version control.
+# Back them up separately (e.g., via hosting snapshots or rsync).
+uploads/
+
+# ----- Core & third-party plugins/themes -----
+# Only track YOUR custom code. Ignore everything installed from
+# the WordPress.org repo, premium vendors, or WP-CLI.
+# Uncomment the lines below if you install third-party themes/plugins
+# alongside your custom ones and want to keep them out of git:
+# plugins/*
+# !plugins/keytobd-booking/
+# themes/*
+# !themes/keytobd/
+
+# ----- Package managers -----
+node_modules/
+vendor/
+composer.lock
+
+# ----- Build & compiled output -----
+dist/
+build/
+*.min.css.map
+*.min.js.map
+
+# ----- Caches -----
+.sass-cache/
+.cache/
+*.cache
+
+# ----- Environment & secrets -----
+.env
+.env.*
+!.env.example
+
+# ----- OS generated files -----
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# ----- IDE / editor files -----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ----- Debug & logs -----
+debug.log
+*.log
+error_log
+php_errorlog
+
+# ----- Misc -----
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+.phpunit.result.cache

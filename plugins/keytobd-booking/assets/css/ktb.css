@@ -1,0 +1,74 @@
+/* KeyToBD Booking — front-end styles. 3s-Soft
+   Uses theme brand variables when present, with safe fallbacks. */
+.ktb-form,
+.ktb-services {
+	--ktb-accent: var(--accent, #FF7A33);
+	--ktb-accent-dark: var(--accent-dark, #E8631F);
+	--ktb-navy: var(--navy, #143C5E);
+	--ktb-blue: var(--blue, #2C5F8A);
+	--ktb-line: var(--line, #DCE6EE);
+	--ktb-muted: var(--muted, #5B6B7A);
+	--ktb-cloud: var(--cloud, #F6F9FB);
+	font-family: inherit;
+}
+
+/* Form */
+.ktb-form { background: #fff; border: 1px solid var(--ktb-line); border-radius: 14px; padding: clamp(18px, 3vw, 28px); box-shadow: 0 10px 30px rgba(20,60,94,.08); }
+.ktb-form__title { margin: 0 0 16px; font-size: 1.25rem; }
+.ktb-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ktb-field { display: flex; flex-direction: column; }
+.ktb-field--full { grid-column: 1 / -1; }
+.ktb-field label { font-weight: 600; font-size: .82rem; margin-bottom: 5px; }
+.ktb-field label span { color: var(--ktb-accent); }
+.ktb-field input, .ktb-field select, .ktb-field textarea {
+	padding: 11px 13px; border: 1.5px solid var(--ktb-line); border-radius: 10px;
+	font: inherit; font-size: .95rem; background: var(--ktb-cloud); color: inherit; width: 100%;
+}
+.ktb-field input:focus, .ktb-field select:focus, .ktb-field textarea:focus { outline: none; border-color: var(--ktb-blue); background: #fff; }
+.ktb-locked { display: inline-block; background: var(--ktb-cloud); border: 1px dashed var(--ktb-line); border-radius: 10px; padding: 10px 14px; font-size: .95rem; }
+
+.ktb-summary { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 18px 0 0; padding: 14px 16px; background: var(--ktb-cloud); border-radius: 10px; }
+.ktb-summary__label { color: var(--ktb-muted); font-size: .85rem; }
+.ktb-summary__total { font-size: 1.35rem; font-weight: 700; color: var(--ktb-navy); }
+.ktb-summary__avail { font-size: .8rem; font-weight: 600; margin-left: auto; }
+.ktb-summary__avail.ok { color: #1FA463; }
+.ktb-summary__avail.bad { color: #D8453A; }
+
+.ktb-submit { margin-top: 18px; width: 100%; padding: 14px; border: 0; border-radius: 10px; background: var(--ktb-accent); color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background .2s; }
+.ktb-submit:hover { background: var(--ktb-accent-dark); }
+.ktb-submit:disabled { opacity: .6; cursor: progress; }
+.ktb-msg { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; font-size: .9rem; }
+.ktb-msg.ok { background: #E6F6EE; color: #137a4a; border: 1px solid #B8E6CD; }
+.ktb-msg.bad { background: #FDECEA; color: #b32d23; border: 1px solid #F5C6C1; }
+
+.ktb-terms { display: flex; align-items: flex-start; gap: 9px; margin: 14px 0 0; font-size: .9rem; color: var(--ktb-muted); }
+.ktb-terms input { margin-top: 3px; }
+
+.ktb-lookup__result { margin-top: 16px; }
+.ktb-lookup__card { background: var(--ktb-cloud); border: 1px solid var(--ktb-line); border-radius: 12px; padding: 16px 18px; }
+.ktb-lookup__card strong { font-family: var(--ktb-navy); font-size: 1.05rem; color: var(--ktb-navy); }
+.ktb-lk-status { display: inline-block; margin-left: 8px; background: var(--ktb-navy); color: #fff; font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; vertical-align: middle; }
+.ktb-lookup__card ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; color: var(--ktb-ink, #14202B); font-size: .92rem; }
+
+/* Services grid */
+.ktb-services { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 22px; }
+.ktb-card { background: #fff; border: 1px solid var(--ktb-line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+.ktb-card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(20,60,94,.12); }
+.ktb-card__media { position: relative; aspect-ratio: 4/3; display: block; overflow: hidden; background: var(--ktb-cloud); }
+.ktb-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.ktb-card__ph { position: absolute; inset: 0; background: linear-gradient(135deg, var(--ktb-blue), var(--ktb-navy)); }
+.ktb-card__type { position: absolute; top: 10px; left: 10px; background: rgba(20,60,94,.92); color: #fff; font-size: .72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+.ktb-card__body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.ktb-card__meta { display: flex; gap: 12px; color: var(--ktb-muted); font-size: .8rem; margin-bottom: 6px; }
+.ktb-card__title { font-size: 1.1rem; margin: 0 0 14px; }
+.ktb-card__title a { color: inherit; text-decoration: none; }
+.ktb-card__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--ktb-line); }
+.ktb-card__price { font-weight: 700; color: var(--ktb-navy); }
+.ktb-card__price small { color: var(--ktb-muted); font-weight: 500; font-size: .72rem; }
+.ktb-card__btn { background: var(--ktb-accent); color: #fff; text-decoration: none; font-weight: 600; font-size: .85rem; padding: 8px 14px; border-radius: 9px; }
+.ktb-card__btn:hover { background: var(--ktb-accent-dark); }
+
+@media (max-width: 720px) {
+	.ktb-form__grid { grid-template-columns: 1fr; }
+	.ktb-services { grid-template-columns: 1fr; }
+}

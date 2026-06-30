@@ -1,0 +1,20 @@
+/*
+Theme Name: KeyToBD
+Theme URI: https://keytobd.com
+Author: 3s-Soft
+Author URI: https://3s-soft.com
+Description: Custom WordPress theme for KeyToBD — a Cox's Bazar based Bangladesh travel agency. Full online booking engine for tours, hotels, rent-a-car, Saint Martin ship tickets and houseboat trips. Built on WooCommerce. Crafted by 3s-Soft.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: keytobd
+Tags: travel, booking, woocommerce, tourism, custom-colors, custom-menu, featured-images, translation-ready
+*/
+
+/*
+ * Visual styles live in assets/css/main.css (enqueued in functions.php).
+ * This file carries the theme header + the WordPress-required identity only.
+ */

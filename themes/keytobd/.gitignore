@@ -1,0 +1,35 @@
+# =========================
+# KeytoBD Theme .gitignore
+# =========================
+
+# ----- Package managers -----
+node_modules/
+vendor/
+
+# ----- Build & compiled output -----
+dist/
+build/
+
+# ----- Caches -----
+.sass-cache/
+.cache/
+
+# ----- Source maps (keep minified files, ignore maps) -----
+*.map
+
+# ----- Environment -----
+.env
+.env.*
+!.env.example
+
+# ----- OS generated files -----
+.DS_Store
+Thumbs.db
+
+# ----- IDE / editor files -----
+.vscode/
+.idea/
+
+# ----- Debug -----
+debug.log
+error_log

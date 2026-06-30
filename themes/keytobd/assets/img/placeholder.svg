@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-label="KeyToBD">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A90C2"/>
+      <stop offset="1" stop-color="#2C5F8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="440" fill="url(#sky)"/>
+  <circle cx="520" cy="90" r="42" fill="#FFC94D" opacity="0.9"/>
+  <path d="M0 320 L120 250 L240 310 L360 240 L480 300 L640 230 L640 440 L0 440 Z" fill="#143C5E" opacity="0.55"/>
+  <path d="M0 360 L160 300 L320 350 L480 295 L640 345 L640 440 L0 440 Z" fill="#0E2C45" opacity="0.6"/>
+  <g fill="#ffffff" opacity="0.92" font-family="Poppins, sans-serif" text-anchor="middle">
+    <text x="320" y="215" font-size="46" font-weight="800" letter-spacing="-1">KeyToBD</text>
+    <text x="320" y="248" font-size="17" font-weight="500" opacity="0.85">Travel Solutions in Bangladesh</text>
+  </g>
+</svg>
