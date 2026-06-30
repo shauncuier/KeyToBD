@@ -121,6 +121,10 @@ ul { margin: 0; padding: 0; }
 .header-cart { position: relative; color: var(--ink); display: inline-flex; }
 .header-cart__count { position: absolute; top: -8px; right: -10px; background: var(--accent); color: #fff; font-size: .7rem; font-weight: 700; min-width: 18px; height: 18px; border-radius: 9px; display: grid; place-items: center; padding: 0 4px; }
 .nav-toggle, .nav-close { display: none; background: none; border: 0; color: var(--ink); cursor: pointer; padding: 6px; }
+.header-login { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-head); font-weight: 600; font-size: .9rem; color: var(--ink); }
+.header-login:hover { color: var(--blue); }
+.header-account__av { width: 34px; height: 34px; border-radius: 50%; background: var(--sky-soft); color: var(--blue); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: .85rem; }
+@media (max-width: 860px) { .header-login span { display: none; } }
 
 /* ---------- Mobile nav ---------- */
 .mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 340px); background: #fff; z-index: 110; padding: 20px; transform: translateX(100%); transition: transform .3s var(--ease); overflow-y: auto; box-shadow: var(--shadow-lg); }
@@ -469,6 +473,67 @@ a.page-numbers:hover { border-color: var(--blue); color: var(--blue); }
 @media (max-width: 860px) {
 	.single-ktb_service .ktb-bookbar { display: flex; }
 	.single-ktb_service .mobile-bar { display: none; }
+}
+
+/* ---------- Branded auth (/account/) ---------- */
+.ktb-auth { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; max-width: 1040px; margin: clamp(20px,4vw,48px) auto; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: #fff; }
+.ktb-auth__brand { position: relative; background: var(--navy) center/cover no-repeat; color: #fff; display: flex; align-items: flex-end; padding: 40px; }
+.ktb-auth__brand::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,47,68,.35), rgba(14,47,68,.85)); }
+.ktb-auth__brandinner { position: relative; z-index: 1; }
+.ktb-auth__brandinner h2 { color: #fff; font-size: 1.7rem; margin: 16px 0 18px; }
+.ktb-auth__points { list-style: none; display: grid; gap: 12px; }
+.ktb-auth__points li { display: flex; align-items: center; gap: 10px; font-size: .95rem; color: #DCEFF4; }
+.ktb-auth__points .icon { color: var(--teal); }
+
+.ktb-auth__panel { display: flex; align-items: center; justify-content: center; padding: clamp(24px,4vw,44px); }
+.ktb-auth__card { width: 100%; max-width: 380px; }
+.ktb-auth__tabs { display: flex; gap: 6px; background: var(--sand); border-radius: var(--radius-sm); padding: 5px; margin: 4px 0 20px; }
+.ktb-auth__tab { flex: 1; padding: 10px; border: 0; background: transparent; border-radius: 9px; font-family: var(--font-head); font-weight: 600; font-size: .92rem; color: var(--muted); cursor: pointer; transition: .2s var(--ease); }
+.ktb-auth__tab.is-active { background: #fff; color: var(--navy); box-shadow: var(--shadow-sm); }
+
+.ktb-auth__form { display: none; }
+.ktb-auth__form.is-active { display: block; }
+.ktb-auth__formtitle { font-size: 1.15rem; margin-bottom: 14px; }
+.ktb-field { display: block; margin-bottom: 14px; }
+.ktb-field > span { display: block; font-family: var(--font-head); font-weight: 600; font-size: .8rem; color: var(--ink); margin-bottom: 6px; }
+.ktb-field input { width: 100%; padding: 12px 13px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); font: inherit; font-size: .95rem; background: var(--sand); color: var(--ink); }
+.ktb-field input:focus { outline: none; border-color: var(--blue); background: #fff; }
+.ktb-pw { position: relative; display: block; }
+.ktb-pw input { padding-right: 44px; width: 100%; }
+.ktb-pw__toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); cursor: pointer; padding: 6px; }
+.ktb-pw__toggle.is-on { color: var(--blue); }
+.ktb-pw__bar { height: 5px; background: var(--line); border-radius: 4px; overflow: hidden; margin: -4px 0 14px; }
+.ktb-pw__bar span { display: block; height: 100%; width: 0; transition: width .25s var(--ease), background .25s; background: var(--accent); }
+.ktb-pw__bar.s1 span { background: #E24B4A; } .ktb-pw__bar.s2 span { background: #E8A33D; } .ktb-pw__bar.s3 span { background: #4A90C2; } .ktb-pw__bar.s4 span { background: var(--green); }
+
+.ktb-auth__row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.ktb-check { font-size: .85rem; color: var(--muted); display: inline-flex; align-items: center; gap: 7px; }
+.ktb-auth__link { background: none; border: 0; color: var(--blue); font-size: .85rem; font-weight: 600; cursor: pointer; padding: 0; }
+.ktb-auth__link.center { display: block; margin: 12px auto 0; }
+.ktb-auth__fine { font-size: .8rem; color: var(--muted); text-align: center; margin: 12px 0 0; }
+.ktb-auth__or { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .8rem; margin: 16px 0; }
+.ktb-auth__or::before, .ktb-auth__or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.ktb-google { display: flex; justify-content: center; min-height: 40px; }
+.ktb-auth .ktb-msg { margin: 0 0 16px; padding: 11px 14px; border-radius: var(--radius-sm); font-size: .9rem; }
+.ktb-auth .ktb-msg.bad { background: #FDECEA; color: #b32d23; }
+.ktb-auth .ktb-msg.ok { background: #E6F6EE; color: #137a4a; }
+
+/* Logged-in dashboard */
+.ktb-auth--dash { grid-template-columns: 1fr; min-height: auto; max-width: 480px; }
+.ktb-auth--dash .ktb-auth__card { max-width: none; text-align: center; padding: 36px; }
+.ktb-auth__avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sky-soft); color: var(--blue); display: inline-grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; margin-bottom: 12px; }
+.ktb-auth__email { color: var(--muted); margin-top: -6px; }
+.ktb-auth__badge { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; font-weight: 600; padding: 6px 12px; border-radius: 20px; margin: 8px 0; }
+.ktb-auth__badge.ok { background: #E6F6EE; color: var(--green); }
+.ktb-auth__badge.warn { background: #FFF1E8; color: #C2410C; }
+.ktb-auth__links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+
+@media (max-width: 760px) {
+	.ktb-auth { grid-template-columns: 1fr; }
+	.ktb-auth__brand { min-height: 160px; padding: 24px; }
+	.ktb-auth__brandinner h2 { font-size: 1.3rem; margin: 8px 0 10px; }
+	.ktb-auth__points { grid-auto-flow: column; gap: 16px; font-size: .8rem; }
+	.ktb-auth__points li span, .ktb-auth__points li { font-size: .78rem; }
 }
 
 /* ---------- WooCommerce light touch ---------- */

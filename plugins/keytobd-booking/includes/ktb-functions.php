@@ -40,6 +40,7 @@ function ktb_default_settings() {
 		// Auth.
 		'require_login'    => 1,      // Booking requires a logged-in user.
 		'require_verify'   => 1,      // Booking requires a verified email.
+		'google_client_id' => '',     // Google Sign-In client ID (optional).
 	);
 }
 

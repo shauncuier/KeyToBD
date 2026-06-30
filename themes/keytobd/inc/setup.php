@@ -70,6 +70,7 @@ class KeyToBD_Setup {
 			'event-management'  => array( 'Event Management', 'page-templates/template-enquiry.php', 'Corporate retreats, group tours and event logistics across Bangladesh.' ),
 			'blog'              => array( 'Travel Guide', '', '' ),
 			'track-booking'     => array( 'Track Booking', '', '[ktb_booking_lookup]' ),
+			'account'           => array( 'My Account', '', '[keytobd_account]' ),
 			'terms'             => array( 'Terms & Conditions', '', 'Placeholder terms & conditions. Edit this page with your booking, payment and travel terms.' ),
 			'privacy-policy'    => array( 'Privacy Policy', '', 'Placeholder privacy policy. Describe how customer data is collected and used.' ),
 			'refund-policy'     => array( 'Refund & Cancellation Policy', '', 'Placeholder cancellation policy. State refund windows and charges per service.' ),

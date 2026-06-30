@@ -153,3 +153,4 @@ require_once KEYTOBD_DIR . '/inc/elementor.php';
 require_once KEYTOBD_DIR . '/inc/woocommerce.php';
 require_once KEYTOBD_DIR . '/inc/plugin-activator.php';
 require_once KEYTOBD_DIR . '/inc/setup.php';
+require_once KEYTOBD_DIR . '/inc/auth.php';

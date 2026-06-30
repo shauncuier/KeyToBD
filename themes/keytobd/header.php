@@ -74,6 +74,12 @@ $kt = keytobd_contact();
 					<span class="header-cart__count"><?php echo esc_html( WC()->cart ? WC()->cart->get_cart_contents_count() : 0 ); ?></span>
 				</a>
 			<?php endif; ?>
+			<?php $kt_acct = function_exists( 'KeyToBD_Auth_Pages' ) || class_exists( 'KeyToBD_Auth_Pages' ) ? KeyToBD_Auth_Pages::account_url() : wp_login_url(); ?>
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo esc_url( $kt_acct ); ?>" class="header-account" aria-label="<?php esc_attr_e( 'My account', 'keytobd' ); ?>"><span class="header-account__av"><?php echo esc_html( strtoupper( mb_substr( wp_get_current_user()->display_name, 0, 1 ) ) ); ?></span></a>
+			<?php else : ?>
+				<a href="<?php echo esc_url( $kt_acct ); ?>" class="header-login"><?php keytobd_icon( 'users', 18 ); ?> <span><?php esc_html_e( 'Log in', 'keytobd' ); ?></span></a>
+			<?php endif; ?>
 			<a href="<?php echo esc_url( keytobd_cat_link( 'tour-packages' ) ); ?>" class="btn btn--accent btn--sm header-book"><?php esc_html_e( 'Book Now', 'keytobd' ); ?></a>
 			<button class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="<?php esc_attr_e( 'Menu', 'keytobd' ); ?>">
 				<?php keytobd_icon( 'menu', 24 ); ?>

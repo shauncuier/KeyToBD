@@ -147,6 +147,7 @@ class KTB_Admin {
 			'turnstile_secret'       => isset( $in['turnstile_secret'] ) ? sanitize_text_field( $in['turnstile_secret'] ) : '',
 			'require_login'          => empty( $in['require_login'] ) ? 0 : 1,
 			'require_verify'         => empty( $in['require_verify'] ) ? 0 : 1,
+			'google_client_id'       => isset( $in['google_client_id'] ) ? sanitize_text_field( $in['google_client_id'] ) : '',
 		);
 	}
 
@@ -220,6 +221,13 @@ class KTB_Admin {
 					<tr>
 						<th><?php esc_html_e( 'Require verified email', 'keytobd-booking' ); ?></th>
 						<td><label><input name="ktb_settings[require_verify]" type="checkbox" value="1" <?php checked( ! empty( $s['require_verify'] ) ); ?>> <?php esc_html_e( 'User must click the email verification link before booking.', 'keytobd-booking' ); ?></label></td>
+					</tr>
+					<tr>
+						<th><label for="ktb_gid"><?php esc_html_e( 'Google Sign-In client ID', 'keytobd-booking' ); ?></label></th>
+						<td>
+							<input name="ktb_settings[google_client_id]" id="ktb_gid" type="text" value="<?php echo esc_attr( $s['google_client_id'] ?? '' ); ?>" class="large-text" placeholder="xxxxx.apps.googleusercontent.com">
+							<p class="description"><?php esc_html_e( 'Optional. Paste a Google OAuth Client ID to show "Continue with Google" on the account page. Authorized JavaScript origin must be your site URL.', 'keytobd-booking' ); ?></p>
+						</td>
 					</tr>
 				</table>
 
