@@ -169,6 +169,7 @@
 			} else {
 				resultsEl.innerHTML = d.html || '<p class="ktb-empty">' + (KTB.i18n ? '' : '') + 'No services match your filters.</p>';
 			}
+				resultsEl.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
 			if (countEl) { countEl.textContent = d.count_fmt; }
 			if (moreBtn) {
 				moreBtn.dataset.paged = d.paged;
