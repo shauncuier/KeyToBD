@@ -151,3 +151,5 @@ require_once KEYTOBD_DIR . '/inc/customizer.php';
 require_once KEYTOBD_DIR . '/inc/customizer-css.php';
 require_once KEYTOBD_DIR . '/inc/elementor.php';
 require_once KEYTOBD_DIR . '/inc/woocommerce.php';
+require_once KEYTOBD_DIR . '/inc/setup-pages.php';
+
