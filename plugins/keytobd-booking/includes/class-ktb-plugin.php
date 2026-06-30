@@ -39,6 +39,7 @@ final class KTB_Plugin {
 	 */
 	private function __construct() {
 		KTB_Security::init();
+		KTB_Auth::init();
 		KTB_Post_Types::init();
 		KTB_Meta::init();
 		KTB_Shortcodes::init();

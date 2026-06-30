@@ -1,35 +1,29 @@
-# =========================
-# KeytoBD Theme .gitignore
-# =========================
+# Theme: keytobd — build artifacts & local cruft
 
-# ----- Package managers -----
+# Dependencies / build output
 node_modules/
 vendor/
-
-# ----- Build & compiled output -----
 dist/
 build/
 
-# ----- Caches -----
+# Bundled plugin zip — build artifact, regenerate via bin/build-plugin-zip.sh
+assets/required-plugins/*.zip
+
+# Compiled CSS sourcemaps (keep main.css; ignore generated maps)
+assets/css/*.css.map
 .sass-cache/
-.cache/
+*.scssc
 
-# ----- Source maps (keep minified files, ignore maps) -----
-*.map
+# Caveman-compress backups (FILE.original.md) and editor temp
+*.original.md
+*.swp
+*~
 
-# ----- Environment -----
-.env
-.env.*
-!.env.example
+# Compiled translations (keep .po, ignore generated .mo if built locally)
+languages/*.mo
 
-# ----- OS generated files -----
+# OS / editor
 .DS_Store
 Thumbs.db
-
-# ----- IDE / editor files -----
-.vscode/
 .idea/
-
-# ----- Debug -----
-debug.log
-error_log
+.vscode/

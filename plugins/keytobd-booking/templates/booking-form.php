@@ -25,6 +25,38 @@ if ( ! $locked_service ) {
 
 $locked = $locked_service ? ktb_get_service( $locked_service ) : null;
 $today  = gmdate( 'Y-m-d' );
+
+// Auth gate — booking may require login + verified email.
+$gate = class_exists( 'KTB_Auth' ) ? KTB_Auth::gate_state() : 'ok';
+if ( 'guest' === $gate ) {
+	$redirect = $locked_service ? get_permalink( $locked_service ) : home_url( '/services/' );
+	?>
+	<div id="ktb-book" class="ktb-form ktb-gate">
+		<h3 class="ktb-form__title"><?php esc_html_e( 'Log in to book', 'keytobd-booking' ); ?></h3>
+		<p><?php esc_html_e( 'Please log in or create a free account to make a booking.', 'keytobd-booking' ); ?></p>
+		<div class="ktb-gate__actions">
+			<a class="ktb-submit" style="display:inline-flex;width:auto;text-decoration:none" href="<?php echo esc_url( wp_login_url( $redirect ) ); ?>"><?php esc_html_e( 'Log in', 'keytobd-booking' ); ?></a>
+			<a class="ktb-gate__alt" href="<?php echo esc_url( wp_registration_url() ); ?>"><?php esc_html_e( 'Create account', 'keytobd-booking' ); ?></a>
+		</div>
+	</div>
+	<?php
+	return;
+}
+if ( 'unverified' === $gate ) {
+	?>
+	<div id="ktb-book" class="ktb-form ktb-gate" data-ktb-resend-wrap>
+		<h3 class="ktb-form__title"><?php esc_html_e( 'Verify your email to book', 'keytobd-booking' ); ?></h3>
+		<p><?php printf( esc_html__( 'We sent a verification link to %s. Click it, then refresh this page to book.', 'keytobd-booking' ), '<strong>' . esc_html( wp_get_current_user()->user_email ) . '</strong>' ); ?></p>
+		<div class="ktb-gate__actions">
+			<button type="button" class="ktb-submit" style="width:auto" data-ktb-resend><?php esc_html_e( 'Resend verification email', 'keytobd-booking' ); ?></button>
+		</div>
+		<p class="ktb-msg" data-ktb-msg role="status" aria-live="polite" hidden></p>
+	</div>
+	<?php
+	return;
+}
+
+$cur_user = is_user_logged_in() ? wp_get_current_user() : null;
 ?>
 <form id="ktb-book" class="ktb-form" data-ktb-form aria-label="<?php esc_attr_e( 'Booking form', 'keytobd-booking' ); ?>">
 	<?php if ( $form_title ) : ?><h3 class="ktb-form__title"><?php echo esc_html( $form_title ); ?></h3>
@@ -71,15 +103,16 @@ $today  = gmdate( 'Y-m-d' );
 
 		<div class="ktb-field">
 			<label for="ktb-name"><?php esc_html_e( 'Full name', 'keytobd-booking' ); ?> <span>*</span></label>
-			<input type="text" id="ktb-name" name="name" required>
+			<input type="text" id="ktb-name" name="name" value="<?php echo esc_attr( $cur_user ? $cur_user->display_name : '' ); ?>" required>
 		</div>
 		<div class="ktb-field">
 			<label for="ktb-phone"><?php esc_html_e( 'Phone', 'keytobd-booking' ); ?> <span>*</span></label>
-			<input type="tel" id="ktb-phone" name="phone" required>
+			<input type="tel" id="ktb-phone" name="phone" value="<?php echo esc_attr( $cur_user ? get_user_meta( $cur_user->ID, 'billing_phone', true ) : '' ); ?>" required>
 		</div>
 		<div class="ktb-field">
 			<label for="ktb-email"><?php esc_html_e( 'Email', 'keytobd-booking' ); ?></label>
-			<input type="email" id="ktb-email" name="email">
+			<input type="email" id="ktb-email" name="email" value="<?php echo esc_attr( $cur_user ? $cur_user->user_email : '' ); ?>"<?php echo $cur_user ? ' readonly' : ''; ?>>
+			<?php if ( $cur_user ) : ?><small class="ktb-verified-note"><?php esc_html_e( 'Verified account email', 'keytobd-booking' ); ?></small><?php endif; ?>
 		</div>
 
 		<div class="ktb-field">

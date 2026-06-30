@@ -43,13 +43,9 @@ while ( have_posts() ) :
 			<div class="ktb-single">
 
 				<div class="ktb-single__main">
-					<figure class="ktb-single__media">
-						<?php if ( has_post_thumbnail() ) : ?>
-							<?php the_post_thumbnail( 'keytobd-wide' ); ?>
-						<?php else : ?>
-							<img src="<?php echo esc_url( keytobd_get_service_image( get_the_ID() ) ); ?>" alt="<?php the_title_attribute(); ?>">
-						<?php endif; ?>
-					</figure>
+					<?php if ( has_post_thumbnail() ) : ?>
+						<figure class="ktb-single__media"><?php the_post_thumbnail( 'keytobd-wide' ); ?></figure>
+					<?php endif; ?>
 
 					<div class="ktb-single__facts">
 						<span class="ktb-fact ktb-fact--rating"><?php keytobd_icon( 'star', 16 ); ?> <strong><?php echo esc_html( number_format( (float) $svc['rating'], 1 ) ); ?></strong> <?php echo (int) $svc['reviews'] > 0 ? esc_html( sprintf( '(%s)', number_format_i18n( $svc['reviews'] ) ) ) : esc_html__( 'Excellent', 'keytobd' ); ?></span>

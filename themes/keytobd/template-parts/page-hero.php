@@ -20,7 +20,7 @@ $crumbs   = $args['crumbs'] ?? array();
 				<?php if ( $url ) : ?><a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a><?php else : ?><span><?php echo esc_html( $label ); ?></span><?php endif; ?>
 			<?php endforeach; ?>
 		</nav>
-		<h1><?php echo wp_kses_post( $title ); ?></h1>
+		<h1><?php echo esc_html( $title ); ?></h1>
 		<?php if ( $subtitle ) : ?><p><?php echo esc_html( $subtitle ); ?></p><?php endif; ?>
 	</div>
 </section>

@@ -172,6 +172,14 @@ class KTB_Ajax {
 	public static function create() {
 		self::check();
 
+		// Auth gate: login + verified email (if enabled).
+		if ( KTB_Auth::require_login() && ! is_user_logged_in() ) {
+			wp_send_json_error( array( 'message' => __( 'Please log in to book.', 'keytobd-booking' ), 'login' => wp_login_url() ), 401 );
+		}
+		if ( KTB_Auth::require_verify() && is_user_logged_in() && ! KTB_Auth::is_verified() ) {
+			wp_send_json_error( array( 'message' => __( 'Please verify your email address before booking.', 'keytobd-booking' ), 'verify' => true ), 403 );
+		}
+
 		// Anti-bot + per-IP throttle.
 		if ( ! KTB_Security::is_human( $_POST ) ) {
 			wp_send_json_error( array( 'message' => __( 'Submission blocked. Please try again.', 'keytobd-booking' ) ), 400 );
@@ -190,6 +198,16 @@ class KTB_Ajax {
 		$notes      = isset( $_POST['notes'] ) ? ktb_clamp( sanitize_textarea_field( wp_unslash( $_POST['notes'] ) ), 2000 ) : '';
 		$coupon_in  = isset( $_POST['coupon'] ) ? ktb_clamp( sanitize_text_field( wp_unslash( $_POST['coupon'] ) ), 40 ) : '';
 		$agreed     = ! empty( $_POST['agree'] );
+
+		// When logged in, bind the booking to the account's (verified) email.
+		$user_id = get_current_user_id();
+		if ( $user_id ) {
+			$user  = wp_get_current_user();
+			$email = $user->user_email;
+			if ( '' === $name ) {
+				$name = $user->display_name;
+			}
+		}
 
 		// Validation.
 		if ( ! $service_id || 'ktb_service' !== get_post_type( $service_id ) || 'publish' !== get_post_status( $service_id ) ) {
@@ -287,6 +305,7 @@ class KTB_Ajax {
 			'deposit_due' => $deposit_due,
 			'notes'       => $notes,
 			'payment'     => '',
+			'user_id'     => $user_id,
 			'ip'          => md5( ktb_client_ip() ),
 		);
 		foreach ( $meta as $k => $v ) {

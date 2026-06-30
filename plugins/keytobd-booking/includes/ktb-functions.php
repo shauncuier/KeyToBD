@@ -37,6 +37,9 @@ function ktb_default_settings() {
 		'min_seconds'    => 3,        // form must be open at least N seconds.
 		'turnstile_site'   => '',     // Cloudflare Turnstile site key (optional).
 		'turnstile_secret' => '',     // Cloudflare Turnstile secret key (optional).
+		// Auth.
+		'require_login'    => 1,      // Booking requires a logged-in user.
+		'require_verify'   => 1,      // Booking requires a verified email.
 	);
 }
 

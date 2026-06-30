@@ -145,6 +145,8 @@ class KTB_Admin {
 			'min_seconds'            => isset( $in['min_seconds'] ) ? absint( $in['min_seconds'] ) : 3,
 			'turnstile_site'         => isset( $in['turnstile_site'] ) ? sanitize_text_field( $in['turnstile_site'] ) : '',
 			'turnstile_secret'       => isset( $in['turnstile_secret'] ) ? sanitize_text_field( $in['turnstile_secret'] ) : '',
+			'require_login'          => empty( $in['require_login'] ) ? 0 : 1,
+			'require_verify'         => empty( $in['require_verify'] ) ? 0 : 1,
 		);
 	}
 
@@ -205,6 +207,19 @@ class KTB_Admin {
 							<textarea name="ktb_settings[coupons]" id="ktb_coupons" rows="4" class="large-text code" placeholder="EID10|percent|10&#10;WELCOME|fixed|500"><?php echo esc_textarea( $s['coupons'] ?? '' ); ?></textarea>
 							<p class="description"><?php esc_html_e( 'One per line: CODE|percent|10 or CODE|fixed|500', 'keytobd-booking' ); ?></p>
 						</td>
+					</tr>
+				</table>
+
+				<h2><?php esc_html_e( 'Customer accounts', 'keytobd-booking' ); ?></h2>
+				<table class="form-table" role="presentation">
+					<tr>
+						<th><?php esc_html_e( 'Require login to book', 'keytobd-booking' ); ?></th>
+						<td><label><input name="ktb_settings[require_login]" type="checkbox" value="1" <?php checked( ! empty( $s['require_login'] ) ); ?>> <?php esc_html_e( 'Only logged-in users can submit a booking.', 'keytobd-booking' ); ?></label>
+						<?php if ( ! get_option( 'users_can_register' ) ) : ?><p class="description" style="color:#b32d23"><?php printf( wp_kses_post( __( 'Note: user registration is OFF in <a href="%s">Settings → General</a> — customers cannot self-register.', 'keytobd-booking' ) ), esc_url( admin_url( 'options-general.php' ) ) ); ?></p><?php endif; ?></td>
+					</tr>
+					<tr>
+						<th><?php esc_html_e( 'Require verified email', 'keytobd-booking' ); ?></th>
+						<td><label><input name="ktb_settings[require_verify]" type="checkbox" value="1" <?php checked( ! empty( $s['require_verify'] ) ); ?>> <?php esc_html_e( 'User must click the email verification link before booking.', 'keytobd-booking' ); ?></label></td>
 					</tr>
 				</table>
 

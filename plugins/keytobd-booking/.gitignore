@@ -1,39 +1,22 @@
-# =========================
-# KeytoBD Booking Plugin .gitignore
-# =========================
+# Plugin: keytobd-booking — build artifacts & local cruft
 
-# ----- Package managers -----
+# Dependencies / build output
 node_modules/
 vendor/
-
-# ----- Build & compiled output -----
 dist/
 build/
+composer.lock
 
-# ----- Caches -----
-.sass-cache/
-.cache/
+# Packaged releases
+*.zip
 
-# ----- Source maps -----
-*.map
+# Compiled translations (keep .po/.pot; ignore generated .mo if built locally)
+languages/*.mo
 
-# ----- Environment -----
-.env
-.env.*
-!.env.example
-
-# ----- OS generated files -----
+# OS / editor
 .DS_Store
 Thumbs.db
-
-# ----- IDE / editor files -----
-.vscode/
 .idea/
-
-# ----- Debug -----
-debug.log
-error_log
-
-# ----- Test artifacts -----
-.phpunit.result.cache
-coverage/
+.vscode/
+*.swp
+*~

@@ -41,6 +41,13 @@
 .ktb-msg.ok { background: #E6F6EE; color: #137a4a; border: 1px solid #B8E6CD; }
 .ktb-msg.bad { background: #FDECEA; color: #b32d23; border: 1px solid #F5C6C1; }
 
+.ktb-gate { text-align: center; }
+.ktb-gate p { color: var(--ktb-muted); }
+.ktb-gate__actions { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+.ktb-gate__alt { font-family: var(--ktb-navy); font-weight: 600; color: var(--ktb-blue); text-decoration: none; }
+.ktb-gate__alt:hover { text-decoration: underline; }
+.ktb-verified-note { display: inline-block; margin-top: 5px; font-size: .72rem; color: var(--ktb-green, #2E7D5B); font-weight: 600; }
+
 .ktb-terms { display: flex; align-items: flex-start; gap: 9px; margin: 14px 0 0; font-size: .9rem; color: var(--ktb-muted); }
 .ktb-terms input { margin-top: 3px; }
 

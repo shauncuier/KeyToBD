@@ -130,7 +130,7 @@ $demo_packages = array(
 							'title'    => $svc['title'],
 							'link'     => get_permalink( $svc['id'] ),
 							'price'    => '<span class="amount">' . esc_html( ktb_price( $svc['price'] ) ) . '</span>',
-							'img'      => keytobd_get_service_image( get_the_ID() ),
+							'img'      => has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'keytobd-card' ) : keytobd_img( 'placeholder.svg' ),
 							'badge'    => isset( $types[ $svc['type'] ] ) ? $types[ $svc['type'] ]['label'] : '',
 							'duration' => $svc['duration'],
 							'people'   => $svc['location'],

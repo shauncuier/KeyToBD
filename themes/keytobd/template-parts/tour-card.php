@@ -16,7 +16,7 @@ if ( $product instanceof WC_Product ) {
 	$title  = $product->get_name();
 	$link   = get_permalink( $product->get_id() );
 	$price  = $product->get_price_html();
-	$img    = has_post_thumbnail( $product->get_id() ) ? $product->get_image( 'keytobd-card' ) : sprintf( '<img src="%s" alt="%s" loading="lazy">', esc_url( keytobd_get_service_image( $product->get_id() ) ), esc_attr( $title ) );
+	$img    = $product->get_image( 'keytobd-card' );
 	$rating  = (float) $product->get_average_rating() ?: 4.8;
 	$reviews = (int) $product->get_review_count();
 	$cats    = wc_get_product_category_list( $product->get_id() );

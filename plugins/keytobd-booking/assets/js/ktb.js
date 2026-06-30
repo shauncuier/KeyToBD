@@ -150,6 +150,11 @@
 						if (res.data.deposit_fmt) { okMsg += ' - Deposit due: ' + res.data.deposit_fmt; }
 						show(msg, okMsg, 'ok');
 				} else {
+					if (res && res.data && res.data.login) {
+						show(msg, (res.data.message || '') + ' →', 'bad');
+						window.location.href = res.data.login;
+						return;
+					}
 					show(msg, (res && res.data && res.data.message) || KTB.i18n.error, 'bad');
 				}
 			}).catch(function () {
@@ -160,6 +165,19 @@
 		});
 
 		syncType();
+	}
+
+	/* Resend verification email */
+	function initResend(btn) {
+		btn.addEventListener('click', function () {
+			var wrap = btn.closest('[data-ktb-resend-wrap]') || document;
+			var msg = wrap.querySelector('[data-ktb-msg]');
+			btn.disabled = true;
+			post('ktb_resend_verify', {}).then(function (res) {
+				btn.disabled = false;
+				show(msg, (res && res.data && res.data.message) || KTB.i18n.error, (res && res.success) ? 'ok' : 'bad');
+			}).catch(function () { btn.disabled = false; show(msg, KTB.i18n.error, 'bad'); });
+		});
 	}
 
 	function show(el, text, cls) {
@@ -201,5 +219,6 @@
 	ready(function () {
 		document.querySelectorAll('[data-ktb-form]').forEach(initForm);
 		document.querySelectorAll('[data-ktb-lookup]').forEach(initLookup);
+		document.querySelectorAll('[data-ktb-resend]').forEach(initResend);
 	});
 })();
